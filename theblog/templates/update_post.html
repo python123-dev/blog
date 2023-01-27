@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Edit blog post {%endblock%}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {%if user.id == post.author.id%}
+        <h1>Update Post</h1>
+        <div class="form-group">
+        <form method="post">
+
+         {% csrf_token %}
+            {{form.as_p}}
+            {{form.media}}
+        <button class="btn btn-secondary">Update</button>
+
+
+
+</form>
+</div>
+ {% else %}
+   You are not authorised to change this post
+  {% endif %}
+{% else %}
+You are not loggedin !!!!!!
+{% endif %}
+
+{% endblock %}
